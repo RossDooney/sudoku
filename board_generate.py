@@ -19,26 +19,32 @@ def draw_board(size, box, text):
 def create_random_board():
     board = []
     board_row = []
+    counter = 0
     for index_column in range(0, 9):
+        num_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         for index_row in range(0, 9):
-            board_row.append(random.randint(1, 9))
+            num = random.choice(num_list)
+            counter += 1
+            while num in board_row:
+                num = random.randint(1, 9)
+                counter += 1
+            board_row.append(num)
         board.append(board_row.copy())
         board_row.clear()
-    return board
+    return board, counter
 
 
 def random_num():
-    list_test = []
-    counter = 0
-    for i in range(0, 9):
-        num = random.randint(1, 9)
-        counter += 1
-        while num in list_test:
-            num = random.randint(1, 9)
-            counter += 1
-        list_test.append(num)
-    print(list_test)
-    print(counter)
+    num_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    board = []
+    coun = 0
+    for index_row in range(0, 9):
+        num = random.choice(num_list)
+        coun += 1
+        board.append(num)
+        num_list.remove(num)
+    print(board)
+    print(coun)
 
 
 
