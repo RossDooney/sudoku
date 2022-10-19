@@ -25,26 +25,45 @@ def create_random_board():
         for index_row in range(0, 9):
             num = random.choice(num_list)
             counter += 1
-            while num in board_row:
-                num = random.randint(1, 9)
-                counter += 1
+
+
+
             board_row.append(num)
+            num_list.remove(num)
+
         board.append(board_row.copy())
         board_row.clear()
-    return board, counter
+    return board
 
 
 def random_num():
-    num_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
     board = []
-    coun = 0
-    for index_row in range(0, 9):
-        num = random.choice(num_list)
-        coun += 1
-        board.append(num)
-        num_list.remove(num)
+    board_row = []
+    counter = 0
+    for index_column in range(0, 9):
+        num_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+        for index_row in range(0, 9):
+            num = random.choice(num_list)
+            temp_num = num_list.copy()
+            y = len(board)
+            while y != 0:
+                print(y)
+                y -= 1
+                while num == board[y][index_row]:
+                    counter += 1
+                    num = random.choice(num_list)
+
+
+
+            board_row.append(num)
+            num_list.remove(num)
+
+        board.append(board_row.copy())
+        board_row.clear()
     print(board)
-    print(coun)
+    print(counter)
 
 
 
